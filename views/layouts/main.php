@@ -8,9 +8,13 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use app\assets\AppAsset; // подключение script/style/библиотек/плагинов
 
 AppAsset::register($this);
+
+/*  $this->head() $this->beginPage() $this->beginBody() $this->beginPage()
+ *  метки с помощью которых указываем позицию в блоке подключения
+ */
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -39,6 +43,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Articles', 'url' => ['/start/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (

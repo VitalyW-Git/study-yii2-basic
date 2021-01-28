@@ -125,4 +125,15 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+//    public function actionTest()
+// web/index.php?r=site/test&id=123
+    public function actionTest( $id = null )
+    {
+        // web/index.php?r=site/test
+        $arr1 = ['HTML', 'CSS', 'JS'];
+        $arr2 = ['PHP', 'JQuery'];
+//        return $this->render('test', ['array' => $arr]);
+        return $this->render('test', compact('arr1', 'arr2', 'id') );
+    }
 }
