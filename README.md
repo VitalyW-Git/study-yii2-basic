@@ -4,7 +4,7 @@
 <a href="https://yiiframework.com.ua/ru/doc/guide/2/input-validation/" target="_blank">link 3</a>
 </p>
 
-Выполнение AJAX запроса, методанные.
+Выполнение AJAX запроса, метаданные.
 
 ------------
 
