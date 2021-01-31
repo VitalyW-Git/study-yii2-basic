@@ -1,3 +1,9 @@
+<?php
+//$this->title = 'Title Show Page !';
+//?>
+
+
+
 <h2>Переключение шаблона show</h2>
 
 <button class="btn btn-success" id="btn">I Button</button>
@@ -16,16 +22,18 @@
 $js = <<<JS
     $('#btn').on('click', function (){
         $.ajax({
-        url: 'index.php?r=start/index',
-        data: {test: '123'},
-        type: 'GET',
-        success: function ( res ){
-            console.log( res );
-        },
-        error: function (){
-            alert( 'Error!' );
-        }
-        })
+            url: 'index.php?r=start/index',
+            type: 'POST',
+            data: {test: '123'},
+            // data: data,
+            success: function ( res ){
+                console.log( res );
+            },
+            error: function (){
+                alert( 'Error!' );
+            }
+        });
+        return false;
     })
 JS;
 

@@ -7,6 +7,8 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    //для переводы на странице
+    'language' => 'ru-Ru',
 //    'layout' => 'newtmp', // изменение вывода шаблона глобальный (общий шаблон)
 // public $layout => 'newtmp' можно прописать отдельно для controllera
     'aliases' => [
