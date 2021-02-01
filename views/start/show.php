@@ -6,6 +6,23 @@
 
 <h2>Переключение шаблона show</h2>
 
+<?php //var_dump( $dat );?>
+<?php //echo count( $dat->products ); //отложенная загрузка?>
+<?php //var_dump( $dat );?>
+<?php
+foreach( $dat as $data ){
+    echo '<ul>';
+        echo '<li>' . $data->title . '</li>';
+    $products = $data->products;
+    foreach($products as $product){
+        echo '<ul>';
+            echo '<li>' . $product->title . '</li>';
+        echo '</ul>';
+    }
+    echo '</ul>';
+}
+?>
+
 <button class="btn btn-success" id="btn">I Button</button>
 
 <!--подключение скрипта отдельному файлу, с добавлением зависимотей-->

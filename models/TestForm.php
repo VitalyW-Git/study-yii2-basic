@@ -3,15 +3,16 @@
 // для работы с формой CRUD базы данных расширяем класс yii\elasticsearch\ActiveRecord,
 
 namespace app\models;
-use yii\base\Model;
+use yii\db\ActiveRecord;
 
 // передаём созданный объект с полями в контроллер страницы
 // для создания форм мы используем 2 класса ActiveForm и ActiveField
-class TestForm extends Model
+class TestForm extends ActiveRecord
 {
-    public $name;
-    public $email;
-    public $text;
+    public static function tableName()
+    {
+        return 'posts';
+    }
 
     // название полей для формы можно задать через модель для всех созданных views
     public function attributeLabels()
@@ -27,25 +28,8 @@ class TestForm extends Model
     public function rules()
     {
         return [
-//            [ ['name', 'email'] , 'required'],
-//            ['name', 'required', 'message' => 'поле Имя должно быть заполнено'],
-            [ 'name', 'required' ], // обязательно поле для заполненя
-            [ 'email', 'required' ], // обязательно поле для заполненя
-//            валидация email адреса
-            ['email', 'email'],
-//            минимальное число символов 2, обязательно указываем string
-//            ['name', 'string', 'min' => 2],
-//            ['name', 'string', 'max' => 5],
-            [ 'name', 'string', 'length' => [2, 5] ],
-            [ 'name', 'validateName' ], // public function validateName( $attr )
-            [ 'text', 'trim' ],
+            [ ['name', 'text'] , 'required'],
+            ['email', 'safe'],
         ];
-    }
-//    валидация на сервере
-    public function validateName( $attr )
-    {
-        if (!in_array($this->$attr, [ 'hello', 'world' ])) {
-            $this->addError($attr, 'Выбирете одно из этих значений "hello" или "world".');
-        }
     }
 }
