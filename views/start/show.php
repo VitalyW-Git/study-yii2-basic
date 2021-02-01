@@ -1,26 +1,36 @@
 <?php
 //$this->title = 'Title Show Page !';
-//?>
+use app\components\MyWidget;
+?>
 
 
 
 <h2>Переключение шаблона show</h2>
+<!--ВЫВОД ВИДЖЕТА-->
+<?php
+//echo MyWidget::widget( ['name' => 'Вася'] );
+//echo MyWidget::widget(); //параметр по умолчанию
+?>
+<!--ЭКРАНИПУЕМ КРНТЕНТ-->
+<?php MyWidget::begin();?>
+<h1>Новый текст!</h1>
+<?php MyWidget::end(); ?>
 
 <?php //var_dump( $dat );?>
 <?php //echo count( $dat->products ); //отложенная загрузка?>
 <?php //var_dump( $dat );?>
 <?php
-foreach( $dat as $data ){
-    echo '<ul>';
-        echo '<li>' . $data->title . '</li>';
-    $products = $data->products;
-    foreach($products as $product){
-        echo '<ul>';
-            echo '<li>' . $product->title . '</li>';
-        echo '</ul>';
-    }
-    echo '</ul>';
-}
+//foreach( $dat as $data ){
+//    echo '<ul>';
+//        echo '<li>' . $data->title . '</li>';
+//    $products = $data->products;
+//    foreach($products as $product){
+//        echo '<ul>';
+//            echo '<li>' . $product->title . '</li>';
+//        echo '</ul>';
+//    }
+//    echo '</ul>';
+//}
 ?>
 
 <button class="btn btn-success" id="btn">I Button</button>
