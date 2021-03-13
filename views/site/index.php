@@ -1,6 +1,9 @@
 <?php
 
-/* @var $this yii\web\View */
+use app\components\widget\MenuWidget;
+use yii\web\View;
+
+/* @var $this View */
 
 $this->title = 'My Yii Application';
 ?>
@@ -70,6 +73,11 @@ $this->title = 'My Yii Application';
         </div>
     </div>
 </section><!--/slider-->
+<ul class="catalog">
+    <?= MenuWidget::widget([
+        'template' => 'menu'
+    ]) ?>
+</ul>
 
 <section>
     <div class="container">
