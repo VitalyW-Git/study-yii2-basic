@@ -3,12 +3,12 @@
 use app\components\widget\MenuWidget;
 use app\models\Product;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 /** @var Product[] $products */
 /* @var $this View */
 
-$this->title = 'My Yii Application';
 ?>
 
 
@@ -140,14 +140,20 @@ $this->title = 'My Yii Application';
                                         <div class="productinfo text-center">
                                             <?= Html::img("@web/images/products/{$product->img}", ['alt' => $product->name])?>
                                             <h2>$<?= $product->price ?></h2>
-                                            <p><?= $product->name ?></p>
+                                            <p><?= mb_strimwidth($product->name, 0, 15); ?></p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
                                                 <h2>$<?= $product->price ?></h2>
                                                 <p><?= $product->name ?></p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                <a href="<?= Url::to( ['product/view', 'id' => $product->id] )?>"
+                                                   class="btn btn-default add-to-cart"><i class="glyphicon glyphicon-eye-open"></i>
+                                                    View product
+                                                </a>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                                    Add to cart
+                                                </a>
                                             </div>
                                         </div>
                                         <?php if ($product->new) : ?>

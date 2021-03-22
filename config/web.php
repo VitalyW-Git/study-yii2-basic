@@ -49,7 +49,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'category/<id:\d+>/page/<page:\d+>' => 'category/view', // главные правила прописываем первыми
                 'category/<id:\d+>' => 'category/view', // ссылки для меню
+                'product/<id:\d+>' => 'product/view', // ссылки для меню
             ],
         ],
     ],

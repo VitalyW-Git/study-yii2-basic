@@ -1093,7 +1093,8 @@ h2.title {
 }
 
 .pagination {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     margin-bottom: 25px;
     margin-top: 0;
     padding-left: 15px;
