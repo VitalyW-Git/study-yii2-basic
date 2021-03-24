@@ -147,7 +147,7 @@ use yii\web\View;
                                             <div class="overlay-content">
                                                 <h2>$<?= $product->price ?></h2>
                                                 <p><?= $product->name ?></p>
-                                                <a href="<?= Url::to( ['product/view', 'id' => $product->id] )?>"
+                                                <a href="<?= Url::to( ['product/card-product', 'id' => $product->id] )?>"
                                                    class="btn btn-default add-to-cart"><i class="glyphicon glyphicon-eye-open"></i>
                                                     View product
                                                 </a>
