@@ -2,10 +2,11 @@
 
 namespace app\controllers;
 
+use Yii;
 use yii\data\Pagination;
 use app\models\Category;
 use app\models\Product;
-use Yii;
+use yii\web\HttpException;
 
 class CategoryController extends AppController
 {
@@ -30,10 +31,17 @@ class CategoryController extends AppController
      *
      * @param $id
      * @return string
+     * @throws HttpException
      */
     public function actionView( $id ): string
     {
-        $id = Yii::$app->request->get( 'id' );
+//        Если параметр в экшин не передаём можно прочитать из адресной строки
+//        $id = Yii::$app->request->get( 'id' );
+
+        $category = Category::findOne( $id );
+        if( empty($category) ) {
+            throw new HttpException(404, 'Такой категории в наличии нет.');
+        }
 
         $query = Product::find()->where( ['category_id' => $id] );
         $pages = new Pagination([
@@ -51,5 +59,29 @@ class CategoryController extends AppController
             'pages' => $pages,
             'category' => $category
         ] );
+    }
+
+    /**
+     * @return string
+     */
+    public function actionSearchCategory()
+    {
+        $queryGet = trim(Yii::$app->request->get('queryGet'));
+        $this->setMeta('E-SHOPPER | Поиск ' . $queryGet );
+//        if( !$queryGet )
+//            return $this->render('search-category');
+
+        $query = Product::find()->where( ['like', 'name', $queryGet] );
+        $pages = new Pagination([
+            'totalCount' => $query->count(), 'pageSize' => 3, 'forcePageParam' => false, 'pageSizeParam' => false
+        ]);
+        $products = $query->offset( $pages->offset )
+            ->limit($pages->limit)
+            ->all();
+        return $this->render('search-category', [
+            'products' => $products,
+            'pages' => $pages,
+            'queryGet' => $queryGet
+        ]);
     }
 }
