@@ -67,7 +67,7 @@ class CategoryController extends AppController
     public function actionSearchCategory()
     {
         $queryGet = trim(Yii::$app->request->get('queryGet'));
-        $this->setMeta('E-SHOPPER | Поиск ' . $queryGet );
+        $this->setMeta('E-SHOPPER | Поиск: ' . $queryGet );
 //        if( !$queryGet )
 //            return $this->render('search-category');
 

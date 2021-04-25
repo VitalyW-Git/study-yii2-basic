@@ -8,7 +8,12 @@
 
 	var RGBChange = function() {
 	  $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
-	};	
+	};
+
+/* add product bucket */
+
+
+
 		
 /*scroll to top*/
 
@@ -29,6 +34,30 @@ $(document).ready(function(){
 	        scrollImg: false, // Set true to use image
 	        activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
 	        zIndex: 2147483647 // Z-Index for the overlay
+		});
+	});
+
+
+	function showCart(cart){
+		$('#cart .modal-body').html(cart);
+		$('#cart').modal();
+	}
+
+	$('.add-to-cart').on('click', function(e) {
+		e.preventDefault();
+		var id = $(this).data('id-product');
+		$.ajax({
+			url: '/cart/add',
+			data: {id: id},
+			type: 'GET',
+			success: function (res){
+				if(!res) return alert('Ошибка! Такого товара нет.');
+				showCart(res);
+				console.log(res);
+			},
+			error: function() {
+				alert('Error!');
+			}
 		});
 	});
 });

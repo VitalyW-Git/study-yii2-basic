@@ -141,7 +141,7 @@ use yii\web\View;
                                             <?= Html::img("@web/images/products/{$product->img}", ['alt' => $product->name])?>
                                             <h2>$<?= $product->price ?></h2>
                                             <p><?= mb_strimwidth($product->name, 0, 15); ?></p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+<!--                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
@@ -151,7 +151,8 @@ use yii\web\View;
                                                    class="btn btn-default add-to-cart"><i class="glyphicon glyphicon-eye-open"></i>
                                                     View product
                                                 </a>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                                <a href="<?= Url::to(['cart/add', 'id' => $product->id])?>" class="btn btn-default add-to-cart" data-id-product="<?= $product->id?>">
+                                                    <i class="fa fa-shopping-cart"></i>
                                                     Add to cart
                                                 </a>
                                             </div>
