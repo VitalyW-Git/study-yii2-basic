@@ -11,7 +11,7 @@ class CartController extends AppController
 {
 
     /**
-     * Добавление товара в карзину
+     * Добавление товара в корзину
      *
      * @param $id
      * @return false
@@ -29,4 +29,43 @@ class CartController extends AppController
         return $this->render('cart-modal', compact('session'));
     }
 
+    /**
+     * Полностью очищаем корзину
+     *
+     * @return string
+     */
+    public function actionClear()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $session->remove('cart');
+        $session->remove('cart.qty');
+        $session->remove('cart.sum');
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
+    }
+
+    /**
+     * Удаление одного товара из корзины
+     *
+     * @return string
+     */
+    public function actionRemoveItem()
+    {
+        $id = Yii::$app->request->get('id');
+        $session = Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->recalc($id);
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionShowBucket()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
+    }
 }

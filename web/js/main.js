@@ -38,11 +38,33 @@ $(document).ready(function(){
 	});
 
 
+	/**
+	 * Модалка корзины
+	 * @param cart
+	 */
 	function showCart(cart){
 		$('#cart .modal-body').html(cart);
 		$('#cart').modal();
 	}
+	$('.js-bucket-show').on('click', function(e) {
+		e.preventDefault();
+		$.ajax({
+			url: '/cart/show-bucket',
+			type: 'GET',
+			success: function (res){
+				if(!res) return alert('Ошибка! Такого товара нет.');
+				showCart(res);
+			},
+			error: function() {
+				alert('Error!');
+			}
+		});
+	})
 
+
+	/**
+	 * Добавление товара в корзину
+	 */
 	$('.add-to-cart').on('click', function(e) {
 		e.preventDefault();
 		var id = $(this).data('id-product');
@@ -53,11 +75,50 @@ $(document).ready(function(){
 			success: function (res){
 				if(!res) return alert('Ошибка! Такого товара нет.');
 				showCart(res);
-				console.log(res);
 			},
 			error: function() {
 				alert('Error!');
 			}
 		});
 	});
+
+	/**
+	 * Чистим корзину
+	 */
+	$('.js-btn-clear').on('click', function(e) {
+		e.preventDefault();
+		$.ajax({
+			url: '/cart/clear',
+			type: 'GET',
+			success: function(res){
+				if(!res) alert('Ошибка!');
+				showCart(res);
+			},
+			error: function(){
+				alert('Error!');
+			}
+		});
+	});
+
+	/**
+	 * Удаление одного товара из корзины
+	 * дилигирование событий
+	 */
+	$('#cart, .modal-body').on('click', '.del-item', function() {
+		let id = $(this).data('id-item-bucket');
+		$.ajax({
+			url: '/cart/remove-item',
+			data: {id: id},
+			type: 'GET',
+			success: function(res){
+				if(!res) alert('Ошибка!');
+				showCart(res);
+			},
+			error: function(){
+				alert('Error!');
+			}
+		});
+	})
+
+
 });
