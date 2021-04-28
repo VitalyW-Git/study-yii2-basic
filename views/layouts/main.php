@@ -1,5 +1,6 @@
 <?php
 
+use app\components\widget\BucketModelUserWidget;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -317,24 +318,7 @@ IEAppAsset::register($this);
 
 </footer><!--/Footer-->
 
-
-
-<?php
-
-/**
- * Модалка карзины
- */
-\yii\bootstrap\Modal::begin([
-    'header' => '<h2>Корзина</h2>',
-    'id' => 'cart',
-    'size' => 'modal-lg',
-    'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-        <button type="button" class="btn btn-success">Оформить заказ</button>
-        <button type="button" class="btn btn-danger js-btn-clear">Очистить корзину</button>'
-]);
-
-\yii\bootstrap\Modal::end();
-?>
+<?= BucketModelUserWidget::widget()?>
 
 
 
