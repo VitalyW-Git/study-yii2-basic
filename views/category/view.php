@@ -66,7 +66,11 @@ use yii\widgets\LinkPager;
                 </div>
             </div>
 
-            <?= CardProductForOneCategoryWidget::widget(['products' => $products, 'category' => $category, 'pages' => $pages])?>
+            <?= CardProductForOneCategoryWidget::widget([
+                'products' => $products,
+                'category' => $category,
+                'pages' => $pages
+            ])?>
         </div>
     </div>
 </section>

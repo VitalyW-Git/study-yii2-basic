@@ -85,11 +85,14 @@ use yii\widgets\LinkPager;
                                             <div class="overlay-content">
                                                 <h2>$<?= $product->price ?></h2>
                                                 <p><?= $product->name ?></p>
-                                                <a href="<?= Url::to( ['product/card-product', 'id' => $product->id] )?>"
-                                                   class="btn btn-default add-to-cart"><i class="glyphicon glyphicon-eye-open"></i>
+                                                <a href="<?= Url::to( ['product/card-product', 'id' => $product->id] )?>" target="_blank"
+                                                   class="btn btn-default add-to-cart">
+                                                    <i class="glyphicon glyphicon-eye-open"></i>
                                                     View product
                                                 </a>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                                <a href="#" data-id-product="<?= $product->id ?>"
+                                                   class="btn btn-default add-to-cart add-to-cart-bucket">
+                                                    <i class="fa fa-shopping-cart"></i>
                                                     Add to cart
                                                 </a>
                                             </div>

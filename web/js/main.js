@@ -65,12 +65,13 @@ $(document).ready(function(){
 	/**
 	 * Добавление товара в корзину
 	 */
-	$('.add-to-cart').on('click', function(e) {
+	$('.add-to-cart-bucket').on('click', function(e) {
 		e.preventDefault();
-		var id = $(this).data('id-product');
+		var id = $(this).data('id-product'),
+			qty = $('#qty').val()
 		$.ajax({
 			url: '/cart/add',
-			data: {id: id},
+			data: {id: id, qty: qty},
 			type: 'GET',
 			success: function (res){
 				if(!res) return alert('Ошибка! Такого товара нет.');

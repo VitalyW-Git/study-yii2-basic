@@ -19,12 +19,18 @@ class CartController extends AppController
     public function actionAdd()
     {
         $id = Yii::$app->request->get('id');
+        $qty = (int)Yii::$app->request->get('qty');
+        $valueCount = $qty ? $qty : 1;
+
         $product = Product::findOne($id);
         if (empty($product)) return false;
         $session = Yii::$app->session;
         $session->open();
         $cart = new Cart();
-        $cart->addToCart($product);
+        $cart->addToCart($product, $valueCount);
+        if ( Yii::$app->request->isAjax ) {
+            return $this->redirect( Yii::$app->request->referrer ?: Yii::$app->homeUrl );
+        }
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
     }
@@ -61,6 +67,11 @@ class CartController extends AppController
         return $this->render('cart-modal', compact('session'));
     }
 
+    /**
+     * Просмотр карзины
+     *
+     * @return string
+     */
     public function actionShowBucket()
     {
         $session = Yii::$app->session;
@@ -68,4 +79,10 @@ class CartController extends AppController
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
     }
+
+    public function actionArrangeOrder()
+    {
+        return $this->render('show-bucket');
+    }
+
 }

@@ -27,11 +27,12 @@ use yii\helpers\Url;
                             <div class="overlay-content">
                                 <h2>$<?= $product->price ?></h2>
                                 <p><?= $product->name ?></p>
-                                <a href="<?= Url::to( ['product/card-product', 'id' => $product->id] )?>"
+                                <a href="<?= Url::to( ['product/card-product', 'id' => $product->id] )?>" target="_blank"
                                    class="btn btn-default add-to-cart"><i class="glyphicon glyphicon-eye-open"></i>
-                                    View product
+                                    View pro duct
                                 </a>
-                                <a href="<?= Url::to(['cart/add', 'id' => $product->id])?>" class="btn btn-default add-to-cart" data-id-product="<?= $product->id?>">
+                                <a href="<?= Url::to(['cart/add', 'id' => $product->id])?>"
+                                   class="btn btn-default add-to-cart add-to-cart-bucket" data-id-product="<?= $product->id?>">
                                     <i class="fa fa-shopping-cart"></i>
                                     Add to cart
                                 </a>
