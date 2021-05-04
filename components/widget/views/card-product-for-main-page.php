@@ -31,7 +31,7 @@ use yii\helpers\Url;
                                    class="btn btn-default add-to-cart"><i class="glyphicon glyphicon-eye-open"></i>
                                     View pro duct
                                 </a>
-                                <a href="<?= Url::to(['cart/add', 'id' => $product->id])?>"
+                                <a href="#<?php /*Url::to(['cart/add', 'id' => $product->id])*/?>"
                                    class="btn btn-default add-to-cart add-to-cart-bucket" data-id-product="<?= $product->id?>">
                                     <i class="fa fa-shopping-cart"></i>
                                     Add to cart
