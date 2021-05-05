@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Cart;
+use app\models\Order;
 use app\models\Product;
 use Yii;
 
@@ -13,7 +14,6 @@ class CartController extends AppController
     /**
      * Добавление товара в корзину
      *
-     * @param $id
      * @return false
      */
     public function actionAdd()
@@ -77,9 +77,22 @@ class CartController extends AppController
         return $this->render('cart-modal', compact('session'));
     }
 
+    /**
+     * Оформление заказа
+     *
+     * @return string
+     */
     public function actionArrangeOrder()
     {
-        return $this->render('show-bucket');
+        $session = Yii::$app->session;
+        $session->open();
+        $this->setMeta('Корзина');
+        $order = new Order();
+
+        return $this->render('show-bucket', [
+            'session' => $session,
+            'order' => $order
+        ]);
     }
 
 }
