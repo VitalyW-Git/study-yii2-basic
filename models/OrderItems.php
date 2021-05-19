@@ -2,10 +2,8 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "order_items".
