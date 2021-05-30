@@ -54,12 +54,17 @@ class LoginForm extends Model
     }
 
     /**
-     * Logs in a user using the provided username and password.
-     * @return bool whether the user is logged in successfully
+     * генерируем cookies при нажатии checkbox
+     * @return bool
      */
     public function login()
     {
         if ($this->validate()) {
+            if ($this->rememberMe) {
+                $user = $this->getUser();
+                $user->generateAuthKey();
+                $user->save();
+            }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;

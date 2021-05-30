@@ -19,7 +19,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -30,9 +30,10 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
-                    'logout' => ['post'],
+                    // разрешаем разлогинивание пользователя методами
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -87,7 +88,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Logout action.
+     * Выход из залогиненного пользователя
      *
      * @return Response
      */
