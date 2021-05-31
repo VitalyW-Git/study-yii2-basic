@@ -21,4 +21,21 @@ class Module extends \yii\base\Module
     {
         parent::init();
     }
+
+    /** авторизация пользователя при заходе в админку */
+    /** можно прописать в Modules */
+    public function behaviors(): array
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ]
+            ]
+        ];
+    }
 }
