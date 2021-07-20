@@ -1,15 +1,20 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Order */
 
+$items = $model->orderItems;
+
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+YiiAsset::register($this);
+
 ?>
 <div class="order-view">
 
@@ -39,7 +44,32 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'phone',
             'address',
+
         ],
     ]) ?>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Кол-во</th>
+                <th>Цена</th>
+                <th>Cумма</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($items as $item): ?>
+                <tr>
+                    <td><a href="<?= Url::to(['/product/card-product', 'id' => $item->id]) ?>"><?= $item['name'] ?></a></td>
+                    <td><?= $item->qty_item ?> шт</td>
+                    <td><?= $item->price ?> руб.</td>
+                    <td><?= $item->sum_item ?></td>
+                </tr>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+
 
 </div>
