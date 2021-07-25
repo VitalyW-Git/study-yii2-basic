@@ -65,6 +65,31 @@ $config = [
             ],
         ],
     ],
+    // компонент для подгрузки файлов
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            // проставлена роль, только для администратора
+            'access' => ['@'],
+            'root' => [
+                // путь до загрузки файлов
+                'baseUrl'=>'@web',
+                'basePath'=>'@webroot',
+                'path' => 'upload/images',
+                'name' => 'Images'
+            ],
+            // добавление на картинки водяного знака
+            /*'watermark' => [
+                'source'         => __DIR__.'/logo.png',
+                'marginRight'    => 5,
+                'marginBottom'   => 5,
+                'quality'        => 95,
+                'transparency'   => 70,
+                'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP,
+                'targetMinPixel' => 200
+            ]*/
+        ]
+    ],
     'params' => $params,
 ];
 
